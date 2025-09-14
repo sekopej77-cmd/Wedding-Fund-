@@ -1,0 +1,611 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    overflow: hidden; /* No scrolling - everything fits on screen */
+}
+
+body {
+    font-family: 'Playfair Display', serif;
+    color: #e0e0e0;
+    position: relative;
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+}
+
+/* Background Image */
+.background-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        rgba(26, 26, 46, 0.85),
+        rgba(15, 52, 96, 0.85)
+    ),
+    url('https://imgur.com/bRSfx4H') center/cover;
+    z-index: -1;
+}
+
+/* Floating Hearts */
+.hearts {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.hearts i, .floating-heart {
+    position: absolute;
+    color: rgba(233, 30, 99, 0.7);
+    animation: float 12s ease-in-out infinite;
+    font-size: 20px;
+    filter: drop-shadow(0 0 15px rgba(233, 30, 99, 0.6));
+}
+
+.hearts i:nth-child(1) { left: 10%; animation-delay: 0s; }
+.hearts i:nth-child(2) { left: 20%; animation-delay: 1s; }
+.hearts i:nth-child(3) { left: 30%; animation-delay: 2s; }
+.hearts i:nth-child(4) { left: 40%; animation-delay: 3s; }
+.hearts i:nth-child(5) { left: 50%; animation-delay: 4s; }
+.hearts i:nth-child(6) { left: 60%; animation-delay: 5s; }
+.hearts i:nth-child(7) { left: 70%; animation-delay: 6s; }
+.hearts i:nth-child(8) { left: 80%; animation-delay: 7s; }
+.hearts i:nth-child(9) { left: 90%; animation-delay: 8s; }
+.hearts i:nth-child(10) { left: 95%; animation-delay: 9s; }
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(100vh) scale(0) rotate(0deg);
+        opacity: 0;
+    }
+    5% {
+        opacity: 1;
+        transform: translateY(95vh) scale(0.8) rotate(45deg);
+    }
+    95% {
+        opacity: 1;
+        transform: translateY(-10vh) scale(1.5) rotate(360deg);
+    }
+}
+
+/* FULL SCREEN LAYOUT */
+.fullscreen-container {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
+    position: relative;
+    z-index: 2;
+}
+
+/* TOP SECTION - Title */
+.top-section {
+    flex: 0 0 auto;
+    text-align: center;
+    padding: 15px;
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    margin-bottom: 15px;
+    border: 2px solid #e91e63;
+    box-shadow: 0 10px 30px rgba(233, 30, 99, 0.3);
+}
+
+.top-section h1 {
+    font-family: 'Dancing Script', cursive;
+    font-size: 2.8em;
+    color: #e91e63;
+    margin-bottom: 8px;
+    text-shadow: 0 0 20px rgba(233, 30, 99, 0.5);
+    font-weight: 700;
+}
+
+.top-section h2 {
+    font-family: 'Cinzel', serif;
+    font-size: 1.8em;
+    color: #ffd700;
+    margin-bottom: 10px;
+    font-weight: 600;
+    text-shadow: 0 0 15px rgba(255, 215, 0, 0.4);
+}
+
+.love-story {
+    font-family: 'Great Vibes', cursive;
+    font-size: 1.6em;
+    color: #bb86fc;
+    font-weight: 400;
+    line-height: 1.4;
+    text-shadow: 0 0 10px rgba(187, 134, 252, 0.3);
+}
+
+.story-subtitle {
+    font-family: 'Playfair Display', serif;
+    font-size: 0.7em;
+    color: #b0b0b0;
+    font-style: italic;
+    display: block;
+    margin-top: 5px;
+}
+
+/* MIDDLE SECTION - Content Grid */
+.content-grid {
+    flex: 1;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+/* Countdown Card */
+.countdown-card {
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(15px);
+    border-radius: 20px;
+    padding: 25px;
+    text-align: center;
+    border: 2px solid #e91e63;
+    box-shadow: 0 10px 25px rgba(233, 30, 99, 0.2);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.countdown-card h3 {
+    font-family: 'Orbitron', monospace;
+    color: #e91e63;
+    font-size: 1.6em;
+    margin-bottom: 20px;
+    font-weight: 900;
+    text-shadow: 0 0 15px rgba(233, 30, 99, 0.5);
+}
+
+.countdown-display {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 15px;
+    flex-wrap: wrap;
+}
+
+.time-box {
+    background: linear-gradient(135deg, #e91e63, #ad1457);
+    padding: 15px 12px;
+    border-radius: 15px;
+    min-width: 70px;
+    border: 2px solid #ffd700;
+    box-shadow: 0 5px 15px rgba(233, 30, 99, 0.3);
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { 
+        transform: scale(1);
+        box-shadow: 0 5px 15px rgba(233, 30, 99, 0.3);
+    }
+    50% { 
+        transform: scale(1.05);
+        box-shadow: 0 8px 25px rgba(233, 30, 99, 0.5);
+    }
+}
+
+.time-box span {
+    display: block;
+    font-family: 'Orbitron', monospace;
+    font-size: 2em;
+    font-weight: 900;
+    color: #ffffff;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+.time-box label {
+    font-family: 'Orbitron', monospace;
+    font-size: 0.8em;
+    color: #ffffff;
+    font-weight: 700;
+}
+
+.wedding-date {
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.5em;
+    color: #ffd700;
+    font-weight: 700;
+    text-shadow: 0 0 15px rgba(255, 215, 0, 0.4);
+    margin-bottom: 20px;
+}
+
+/* Share Love Section in Countdown */
+.countdown-share-section {
+    background: linear-gradient(135deg, rgba(233, 30, 99, 0.2), rgba(187, 134, 252, 0.1));
+    padding: 20px;
+    border-radius: 15px;
+    border: 1px solid rgba(233, 30, 99, 0.4);
+    backdrop-filter: blur(10px);
+}
+
+.countdown-share-section h4 {
+    color: #bb86fc;
+    font-size: 1.3em;
+    margin-bottom: 15px;
+    text-shadow: 0 0 10px rgba(187, 134, 252, 0.4);
+    font-family: 'Cinzel', serif;
+}
+
+.share-buttons-large {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.share-btn-large {
+    background: linear-gradient(135deg, #e91e63, #ad1457);
+    color: white;
+    text-decoration: none;
+    padding: 16px 24px;
+    border-radius: 15px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    box-shadow: 0 6px 20px rgba(233, 30, 99, 0.4);
+    font-size: 1.1em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.share-btn-large:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(233, 30, 99, 0.6);
+}
+
+.share-btn-large.twitter {
+    background: linear-gradient(135deg, #1da1f2, #0d8bd9);
+}
+
+.share-btn-large.twitter:hover {
+    box-shadow: 0 8px 25px rgba(29, 161, 242, 0.6);
+}
+
+.share-btn-large.telegram {
+    background: linear-gradient(135deg, #0088cc, #006699);
+}
+
+.share-btn-large.telegram:hover {
+    box-shadow: 0 8px 25px rgba(0, 136, 204, 0.6);
+}
+
+/* Progress & Love Card */
+.progress-love-card {
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(15px);
+    border-radius: 20px;
+    padding: 25px;
+    text-align: center;
+    border: 2px solid #e91e63;
+    box-shadow: 0 10px 25px rgba(233, 30, 99, 0.2);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.progress-love-card h3 {
+    font-family: 'Orbitron', monospace;
+    color: #e91e63;
+    font-size: 1.6em;
+    margin-bottom: 15px;
+    font-weight: 900;
+    text-shadow: 0 0 15px rgba(233, 30, 99, 0.5);
+}
+
+.progress-display {
+    margin-bottom: 15px;
+}
+
+.amount-big {
+    font-family: 'Orbitron', monospace;
+    font-size: 2.8em;
+    font-weight: 900;
+    color: #00ff88;
+    text-shadow: 0 0 20px rgba(0, 255, 136, 0.5);
+}
+
+.target-display {
+    margin-top: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+}
+
+.target-text {
+    font-family: 'Orbitron', monospace;
+    font-size: 1.4em;
+    color: #ffd700;
+    font-weight: 700;
+    text-shadow: 0 0 15px rgba(255, 215, 0, 0.6);
+    background: linear-gradient(135deg, #ffd700, #ffed4e);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.target-label {
+    font-family: 'Playfair Display', serif;
+    color: #b0b0b0;
+    font-weight: 400;
+    font-size: 0.9em;
+    text-shadow: none;
+    background: none;
+    padding: 0;
+    border: none;
+    backdrop-filter: none;
+}
+
+.progress-bar-container {
+    margin: 15px 0;
+    position: relative;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 45px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 22px;
+    overflow: hidden;
+    border: 2px solid #e91e63;
+    position: relative;
+    box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #e91e63, #ff6b9d, #00ff88);
+    background-size: 200% 100%;
+    border-radius: 22px;
+    width: 0%;
+    transition: width 2s ease-in-out;
+    animation: shimmer 3s linear infinite;
+    position: relative;
+    box-shadow: 0 0 20px rgba(233, 30, 99, 0.6);
+}
+
+@keyframes shimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+}
+
+.progress-shine {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+    animation: slide 2s ease-in-out infinite;
+}
+
+@keyframes slide {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
+
+.progress-percent {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: 'Orbitron', monospace;
+    font-size: 1.2em;
+    font-weight: 900;
+    color: #ffffff;
+    text-shadow: 0 0 15px rgba(0, 0, 0, 1);
+    background: rgba(0, 0, 0, 0.3);
+    padding: 2px 8px;
+    border-radius: 10px;
+}
+
+/* Send Love Section */
+.send-love-section {
+    background: linear-gradient(135deg, rgba(233, 30, 99, 0.1), rgba(0, 0, 0, 0.3));
+    padding: 15px;
+    border-radius: 15px;
+    border: 1px solid rgba(233, 30, 99, 0.3);
+    backdrop-filter: blur(10px);
+}
+
+.send-love-section h4 {
+    color: #e91e63;
+    font-size: 1.3em;
+    margin-bottom: 12px;
+    text-shadow: 0 0 10px rgba(233, 30, 99, 0.4);
+}
+
+.love-text {
+    color: #b0b0b0;
+    font-size: 0.9em;
+    margin-top: 12px;
+    font-style: italic;
+}
+
+/* Wallet Display */
+.wallet-display {
+    text-align: center;
+    margin: 12px 0;
+}
+
+.wallet-label {
+    font-size: 0.9em;
+    color: #bb86fc;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+.wallet-address {
+    background: rgba(0, 0, 0, 0.5);
+    border: 1px solid #e91e63;
+    border-radius: 10px;
+    padding: 10px 12px;
+    font-family: 'Courier New', monospace;
+    font-size: 0.8em;
+    color: #00ff88;
+    word-break: break-all;
+    margin-bottom: 12px;
+    line-height: 1.3;
+    text-shadow: 0 0 5px rgba(0, 255, 136, 0.3);
+}
+
+.love-btn {
+    background: linear-gradient(135deg, #e91e63, #ff6b9d);
+    color: white;
+    border: none;
+    padding: 14px 24px;
+    border-radius: 12px;
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    box-shadow: 0 6px 20px rgba(233, 30, 99, 0.4);
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.love-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(233, 30, 99, 0.6);
+}
+
+/* BOTTOM SECTION - Message */
+.bottom-section {
+    flex: 0 0 auto;
+}
+
+.message-card {
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(15px);
+    border-radius: 20px;
+    padding: 20px;
+    text-align: center;
+    border: 2px solid #e91e63;
+    box-shadow: 0 10px 25px rgba(233, 30, 99, 0.2);
+}
+
+.message-card h3 {
+    color: #e91e63;
+    font-size: 1.5em;
+    margin-bottom: 12px;
+    text-shadow: 0 0 15px rgba(233, 30, 99, 0.5);
+}
+
+.message-card p {
+    font-size: 1em;
+    color: #e0e0e0;
+    margin-bottom: 15px;
+    line-height: 1.5;
+}
+
+/* MOBILE RESPONSIVE */
+@media (max-width: 768px) {
+    .fullscreen-container {
+        padding: 12px;
+    }
+    
+    .content-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+    
+    .top-section h1 {
+        font-size: 2.2em;
+    }
+    
+    .top-section h2 {
+        font-size: 1.5em;
+    }
+    
+    .love-story {
+        font-size: 1.3em;
+    }
+    
+    .countdown-display {
+        gap: 8px;
+    }
+    
+    .time-box {
+        min-width: 60px;
+        padding: 12px 8px;
+    }
+    
+    .time-box span {
+        font-size: 1.6em;
+    }
+    
+    .amount-big {
+        font-size: 2.2em;
+    }
+    
+    .wallet-address {
+        font-size: 0.7em;
+    }
+    
+    .share-btn-large {
+        font-size: 1em;
+        padding: 14px 20px;
+    }
+    
+    .target-display {
+        flex-direction: column;
+        gap: 4px;
+    }
+    
+    .target-text {
+        font-size: 1.2em;
+    }
+}
+
+@media (max-width: 480px) {
+    html, body {
+        overflow-y: auto; /* Allow scrolling on very small screens */
+    }
+    
+    .fullscreen-container {
+        min-height: 100vh;
+        height: auto;
+    }
+    
+    .top-section h1 {
+        font-size: 1.8em;
+    }
+    
+    .time-box span {
+        font-size: 1.3em;
+    }
+    
+    .amount-big {
+        font-size: 1.8em;
+    }
+    
+    .wallet-address {
+        font-size: 0.65em;
+    }
+    
+    .share-btn-large {
+        font-size: 0.9em;
+        padding: 12px 16px;
+    }
+    
+    .target-display {
+        flex-direction: column;
+        gap: 2px;
+    }
+    
+    .target-text {
+        font-size: 1em;
+    }
+}

@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sekopej & QueenCrypto Wedding Fund 💍</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Playfair+Display:wght@400;700&family=Orbitron:wght@400;700;900&family=Great+Vibes&family=Cinzel:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Background Image -->
+    <div class="background-overlay"></div>
+    
+    <!-- Floating Hearts -->
+    <div class="hearts">
+        <i class="fas fa-heart"></i>
+        <i class="fas fa-heart"></i>
+        <i class="fas fa-heart"></i>
+        <i class="fas fa-heart"></i>
+        <i class="fas fa-heart"></i>
+        <i class="fas fa-heart"></i>
+        <i class="fas fa-heart"></i>
+        <i class="fas fa-heart"></i>
+        <i class="fas fa-heart"></i>
+        <i class="fas fa-heart"></i>
+    </div>
+
+    <!-- FULL SCREEN CONTAINER -->
+    <div class="fullscreen-container">
+        
+        <!-- TOP SECTION: Title -->
+        <div class="top-section">
+            <h1>💍 Sekopej & QueenCrypto 💍</h1>
+            <h2>Wedding Fund</h2>
+            <p class="love-story">✨ From Erzincan to Jakarta ✨<br>
+            <span class="story-subtitle">Our Love Story Continues Across Continents</span></p>
+        </div>
+
+        <!-- MIDDLE SECTION: Content Grid -->
+        <div class="content-grid">
+            
+            <!-- LEFT: Countdown -->
+            <div class="countdown-card">
+                <h3>💕 OUR BIG DAY 💕</h3>
+                <div class="countdown-display" id="countdown">
+                    <div class="time-box">
+                        <span id="days">365</span>
+                        <label>DAYS</label>
+                    </div>
+                    <div class="time-box">
+                        <span id="hours">24</span>
+                        <label>HOURS</label>
+                    </div>
+                    <div class="time-box">
+                        <span id="minutes">60</span>
+                        <label>MIN</label>
+                    </div>
+                    <div class="time-box">
+                        <span id="seconds">60</span>
+                        <label>SEC</label>
+                    </div>
+                </div>
+                <p class="wedding-date">December 25, 2025 🎊</p>
+                
+                <!-- Share Love Section - MOVED HERE! -->
+                <div class="countdown-share-section">
+                    <h4>💖 Share Our Love Story 💖</h4>
+                    <div class="share-buttons-large">
+                        <a href="https://twitter.com/intent/tweet?text=🎉%20Supporting%20Sekopej%20%26%20QueenCrypto's%20dream%20wedding!%20💍%20From%20Erzincan%20to%20Jakarta%20-%20love%20knows%20no%20borders!%20❤️%20%23WeddingFund%20%23LoveStory&url=https://sekopej77-cmd.github.io/wedding-fund" target="_blank" class="share-btn-large twitter">
+                            <i class="fab fa-twitter"></i> Share Love
+                        </a>
+                        <a href="https://t.me/share/url?url=https://sekopej77-cmd.github.io/wedding-fund&text=🎉%20Supporting%20Sekopej%20%26%20QueenCrypto's%20dream%20wedding!%20💍%20From%20Erzincan%20to%20Jakarta%20-%20love%20knows%20no%20borders!%20❤️" target="_blank" class="share-btn-large telegram">
+                            <i class="fab fa-telegram"></i> Spread Joy
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- RIGHT: Progress & Love -->
+            <div class="progress-love-card">
+                <h3>🎯 WEDDING FUND 🎯</h3>
+                
+                <!-- Progress Display -->
+                <div class="progress-display">
+                    <div class="amount-big" id="currentAmount">$0</div>
+                    <div class="target-display">
+                        <span class="target-text" id="targetAmount">of $10,000</span>
+                        <span class="target-label">TARGET</span>
+                    </div>
+                </div>
+                
+                <!-- Progress Bar -->
+                <div class="progress-bar-container">
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progressFill">
+                            <div class="progress-shine"></div>
+                        </div>
+                    </div>
+                    <div class="progress-percent" id="percentage">0%</div>
+                </div>
+
+                <!-- Send Love Section -->
+                <div class="send-love-section">
+                    <h4>💎 Send Your Love 💎</h4>
+                    
+                    <!-- Full wallet address display -->
+                    <div class="wallet-display">
+                        <div class="wallet-label">ETH/USDC/ERC-20 Wallet:</div>
+                        <div class="wallet-address" id="walletAddress">
+                            0xa3ab7f1BFA75027B3019b2A565d8BED735AA6Ec4
+                        </div>
+                        <button class="love-btn" onclick="copyWallet()">
+                            <i class="fas fa-heart"></i> Copy Wallet
+                        </button>
+                    </div>
+                    
+                    <p class="love-text">Want to send some love? We'd be grateful! 💕</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- BOTTOM SECTION: Message -->
+        <div class="bottom-section">
+            <div class="message-card">
+                <h3>💌 Thank You Message 💌</h3>
+                <p>Every bit of love and support brings us closer to our dream wedding. You're part of our story! 💕</p>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        // 🎯 BURAYA BAK! Bu değerleri değiştir para geldiğinde 👇
+        const CURRENT_AMOUNT = 5;  // ← Para geldiğinde burayı değiştir
+        const TARGET_AMOUNT = 10000;
+        // 👆 Sadece bu satırları değiştirmen yeterli!
+
+        // CORRECT WEDDING DATE: December 25, 2025
+        const weddingDate = new Date('2025-12-25T00:00:00').getTime();
+        
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const timeLeft = weddingDate - now;
+
+            if (timeLeft > 0) {
+                const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+
+                document.getElementById('days').textContent = days;
+                document.getElementById('hours').textContent = hours;
+                document.getElementById('minutes').textContent = minutes;
+                document.getElementById('seconds').textContent = seconds;
+            } else {
+                document.getElementById('countdown').innerHTML = '<h2 class="married-text">🎉 WE\'RE MARRIED! 🎉</h2>';
+            }
+        }
+
+        function updateProgressBar(current, target) {
+            const percentage = Math.min((current / target) * 100, 100);
+            const progressFill = document.getElementById('progressFill');
+            const currentAmount = document.getElementById('currentAmount');
+            const targetAmount = document.getElementById('targetAmount');
+            const percentageDisplay = document.getElementById('percentage');
+
+            // Animate progress bar after a delay
+            setTimeout(() => {
+                progressFill.style.width = percentage + '%';
+            }, 1000);
+
+            // Update displays
+            currentAmount.textContent = `$${current.toLocaleString()}`;
+            targetAmount.textContent = `of $${target.toLocaleString()}`;
+            percentageDisplay.textContent = `${Math.round(percentage * 100) / 100}%`;
+
+            // Special effects for different progress levels
+            if (percentage >= 100) {
+                progressFill.style.background = 'linear-gradient(90deg, #00ff88, #ffd700, #ff6b9d)';
+                progressFill.style.boxShadow = '0 0 30px rgba(0, 255, 136, 0.8)';
+                percentageDisplay.textContent = '🎉 TARGET REACHED! 🎉';
+                percentageDisplay.style.fontSize = '0.9em';
+                // Add celebration animation
+                document.body.style.animation = 'celebrate 2s ease-in-out';
+                
+                // Trigger celebration hearts
+                for(let i = 0; i < 10; i++) {
+                    setTimeout(() => createCelebrationHeart(), i * 200);
+                }
+            } else if (percentage >= 75) {
+                progressFill.style.background = 'linear-gradient(90deg, #e91e63, #ff6b9d, #00ff88, #ffd700)';
+                progressFill.style.boxShadow = '0 0 25px rgba(255, 215, 0, 0.6)';
+            } else if (percentage >= 50) {
+                progressFill.style.background = 'linear-gradient(90deg, #e91e63, #ff6b9d, #00ff88)';
+                progressFill.style.boxShadow = '0 0 20px rgba(0, 255, 136, 0.5)';
+            } else if (percentage >= 25) {
+                progressFill.style.background = 'linear-gradient(90deg, #e91e63, #ff6b9d)';
+                progressFill.style.boxShadow = '0 0 15px rgba(233, 30, 99, 0.4)';
+            }
+
+            console.log(`Progress updated: ${current}/${target} (${percentage.toFixed(2)}%)`);
+        }
+
+        function createCelebrationHeart() {
+            const heart = document.createElement('i');
+            heart.className = 'fas fa-heart celebration-heart';
+            heart.style.position = 'fixed';
+            heart.style.left = Math.random() * 100 + '%';
+            heart.style.top = '100%';
+            heart.style.fontSize = (Math.random() * 20 + 20) + 'px';
+            heart.style.color = `rgba(255, 215, 0, ${Math.random() * 0.5 + 0.5})`;
+            heart.style.filter = `drop-shadow(0 0 20px rgba(255, 215, 0, 0.8))`;
+            heart.style.animation = 'celebrationFloat 3s ease-out forwards';
+            heart.style.zIndex = '1000';
+            heart.style.pointerEvents = 'none';
+            
+            document.body.appendChild(heart);
+            
+            setTimeout(() => {
+                heart.remove();
+            }, 3000);
+        }
+
+        function copyWallet() {
+            const walletAddress = document.getElementById('walletAddress').textContent;
+            navigator.clipboard.writeText(walletAddress).then(() => {
+                const loveBtn = document.querySelector('.love-btn');
+                const originalText = loveBtn.innerHTML;
+                
+                loveBtn.innerHTML = '<i class="fas fa-check"></i> Love Sent!';
+                loveBtn.style.background = 'linear-gradient(135deg, #28a745, #34ce57)';
+                
+                setTimeout(() => {
+                    loveBtn.innerHTML = originalText;
+                    loveBtn.style.background = 'linear-gradient(135deg, #e91e63, #ff6b9d)';
+                }, 2000);
+            }).catch(() => {
+                alert('Wallet address: ' + walletAddress);
+            });
+        }
+
+        // Enhanced floating hearts creation
+        function createFloatingHeart() {
+            const heart = document.createElement('i');
+            heart.className = 'fas fa-heart floating-heart';
+            heart.style.left = Math.random() * 100 + '%';
+            heart.style.animationDelay = Math.random() * 6 + 's';
+            heart.style.fontSize = (Math.random() * 15 + 15) + 'px';
+            heart.style.color = `rgba(233, 30, 99, ${Math.random() * 0.8 + 0.4})`;
+            heart.style.filter = `drop-shadow(0 0 ${Math.random() * 15 + 5}px rgba(233, 30, 99, 0.6))`;
+            
+            document.querySelector('.hearts').appendChild(heart);
+            
+            setTimeout(() => {
+                heart.remove();
+            }, 12000);
+        }
+
+        // Click sparkle effect
+        document.addEventListener('click', function(e) {
+            const sparkle = document.createElement('div');
+            sparkle.innerHTML = '💕';
+            sparkle.style.position = 'fixed';
+            sparkle.style.left = e.clientX + 'px';
+            sparkle.style.top = e.clientY + 'px';
+            sparkle.style.pointerEvents = 'none';
+            sparkle.style.fontSize = '20px';
+            sparkle.style.zIndex = '9999';
+            sparkle.style.animation = 'sparkle 1.5s ease-out forwards';
+            
+            document.body.appendChild(sparkle);
+            setTimeout(() => sparkle.remove(), 1500);
+        });
+
+        // Initialize everything
+        document.addEventListener('DOMContentLoaded', function() {
+            // Start countdown
+            updateCountdown();
+            setInterval(updateCountdown, 1000);
+            
+            // Load progress with current values
+            updateProgressBar(CURRENT_AMOUNT, TARGET_AMOUNT);
+            
+            // Create floating hearts more frequently
+            setInterval(createFloatingHeart, 2000);
+        });
+
+        // Sparkle and celebration animations
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes sparkle {
+                0% { transform: scale(0) rotate(0deg); opacity: 1; }
+                100% { transform: scale(2) rotate(360deg); opacity: 0; }
+            }
+            
+            @keyframes celebrate {
+                0%, 100% { transform: scale(1); }
+                25% { transform: scale(1.02); }
+                50% { transform: scale(1.01); }
+                75% { transform: scale(1.02); }
+            }
+            
+            @keyframes celebrationFloat {
+                0% { 
+                    transform: translateY(0) scale(0) rotate(0deg); 
+                    opacity: 1; 
+                }
+                20% { 
+                    transform: translateY(-200px) scale(1) rotate(90deg); 
+                    opacity: 1; 
+                }
+                100% { 
+                    transform: translateY(-800px) scale(1.5) rotate(360deg); 
+                    opacity: 0; 
+                }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>
