@@ -6,7 +6,7 @@
     <title>Sekopej & QueenCrypto Wedding Fund 💍</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Playfair+Display:wght@400;700&family=Orbitron:wght@400;700;900&family=Great+Vibes&family=Cinzel:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Playfair+Display:wght@400;700&family=Orbitron:wght@400;700;900&family=Great+Vibes&family=Cinzel:wght@400;600&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <!-- Background Image -->
@@ -63,15 +63,19 @@
                 </div>
                 <p class="wedding-date">December 25, 2025 🎊</p>
                 
-                <!-- Share Love Section - MOVED HERE! -->
+                <!-- Share Love Section - UPDATED -->
                 <div class="countdown-share-section">
                     <h4>💖 Share Our Love Story 💖</h4>
                     <div class="share-buttons-large">
-                        <a href="https://twitter.com/intent/tweet?text=🎉%20Supporting%20Sekopej%20%26%20QueenCrypto's%20dream%20wedding!%20💍%20From%20Erzincan%20to%20Jakarta%20-%20love%20knows%20no%20borders!%20❤️%20%23WeddingFund%20%23LoveStory&url=https://sekopej77-cmd.github.io/wedding-fund" target="_blank" class="share-btn-large twitter">
+                        <a href="https://twitter.com/intent/tweet?text=🎉%20Supporting%20Sekopej%20%26%20QueenCrypto's%20dream%20wedding!%20💍%20From%20Erzincan%20to%20Jakarta%20-%20love%20knows%20no%20borders!%20💕&url=https://sekopej77-cmd.github.io/wedding-fund-/" 
+                           target="_blank" 
+                           class="share-btn-large twitter">
                             <i class="fab fa-twitter"></i> Share Love
                         </a>
-                        <a href="https://t.me/share/url?url=https://sekopej77-cmd.github.io/wedding-fund&text=🎉%20Supporting%20Sekopej%20%26%20QueenCrypto's%20dream%20wedding!%20💍%20From%20Erzincan%20to%20Jakarta%20-%20love%20knows%20no%20borders!%20❤️" target="_blank" class="share-btn-large telegram">
-                            <i class="fab fa-telegram"></i> Spread Joy
+                        <a href="https://linktr.ee/Sekopej" 
+                           target="_blank" 
+                           class="share-btn-large linktree">
+                            <i class="fas fa-link"></i> Spread Joy
                         </a>
                     </div>
                 </div>
@@ -100,18 +104,29 @@
                     <div class="progress-percent" id="percentage">0%</div>
                 </div>
 
-                <!-- Send Love Section -->
+                <!-- Send Love Section - UPDATED WITH IBAN -->
                 <div class="send-love-section">
                     <h4>💎 Send Your Love 💎</h4>
                     
-                    <!-- Full wallet address display -->
+                    <!-- Crypto wallet display -->
                     <div class="wallet-display">
                         <div class="wallet-label">ETH/USDC/ERC-20 Wallet:</div>
                         <div class="wallet-address" id="walletAddress">
                             0xa3ab7f1BFA75027B3019b2A565d8BED735AA6Ec4
                         </div>
-                        <button class="love-btn" onclick="copyWallet()">
+                        <button class="love-btn crypto-btn" onclick="copyWallet()">
                             <i class="fas fa-heart"></i> Copy Wallet
+                        </button>
+                    </div>
+
+                    <!-- IBAN display - NEW -->
+                    <div class="wallet-display">
+                        <div class="wallet-label">IBAN (Turkish Bank):</div>
+                        <div class="wallet-address iban-address" id="ibanAddress">
+                            TR34 0011 1000 0000 0088 6788 48
+                        </div>
+                        <button class="love-btn iban-btn" onclick="copyIban()">
+                            <i class="fas fa-university"></i> Copy IBAN
                         </button>
                     </div>
                     
@@ -225,7 +240,7 @@
         function copyWallet() {
             const walletAddress = document.getElementById('walletAddress').textContent;
             navigator.clipboard.writeText(walletAddress).then(() => {
-                const loveBtn = document.querySelector('.love-btn');
+                const loveBtn = document.querySelector('.crypto-btn');
                 const originalText = loveBtn.innerHTML;
                 
                 loveBtn.innerHTML = '<i class="fas fa-check"></i> Love Sent!';
@@ -237,6 +252,25 @@
                 }, 2000);
             }).catch(() => {
                 alert('Wallet address: ' + walletAddress);
+            });
+        }
+
+        // NEW IBAN copy function
+        function copyIban() {
+            const ibanAddress = document.getElementById('ibanAddress').textContent;
+            navigator.clipboard.writeText(ibanAddress).then(() => {
+                const ibanBtn = document.querySelector('.iban-btn');
+                const originalText = ibanBtn.innerHTML;
+                
+                ibanBtn.innerHTML = '<i class="fas fa-check"></i> IBAN Copied!';
+                ibanBtn.style.background = 'linear-gradient(135deg, #28a745, #34ce57)';
+                
+                setTimeout(() => {
+                    ibanBtn.innerHTML = originalText;
+                    ibanBtn.style.background = 'linear-gradient(135deg, #ff6900, #ff8500)';
+                }, 2000);
+            }).catch(() => {
+                alert('IBAN: ' + ibanAddress);
             });
         }
 
